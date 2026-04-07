@@ -15,4 +15,4 @@ spec:
   - protocol: TCP
     port: 80            # Service Port
     targetPort: 80      # Container Port 
-    nodePort: 32141     # We can specify from 30000-32767 ephemeral nodeport range so as not to change the sg all the time whenever new nodeport is created.
+    # nodePort: 32141     # We can specify from 30000-32767 ephemeral nodeport range so as not to change the sg all the time whenever new nodeport is created.
