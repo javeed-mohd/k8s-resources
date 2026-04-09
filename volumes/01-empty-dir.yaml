@@ -9,7 +9,7 @@ spec:
     volumeMounts:
     - mountPath: /var/log/nginx
       name: nginx-logs
-    # This container will just read the logs and push by using readOnly. 
+    # By using readOnly, this container will just read the logs and push.
   - image: almalinux:9
     name: almalinux
     command: ["sleep", "2000"]
