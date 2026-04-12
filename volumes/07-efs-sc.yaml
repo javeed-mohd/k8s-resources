@@ -1,0 +1,11 @@
+# Storage Class is admin task
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: roboshop-efs
+provisioner: efs.csi.aws.com
+parameters:
+  provisioningMode: efs-ap
+  fileSystemId: fs-0a74f07d59bf6910a        # Replace with your File System ID
+  directoryPerms: "700"
+  basePath: "/roboshop"

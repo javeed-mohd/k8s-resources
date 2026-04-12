@@ -1,0 +1,49 @@
+#  Physical representation of the disk and Equivalent object/resource for the disk inside k8S cluster is Persistent Volume.
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: efs-static
+spec:
+  # Volume can be mounted as read-write by a single node. Multiple pods on that same node can still access the volume.
+  capacity:
+    storage: 5Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: ""                       # Storage Class should be empty for Static Provisioning
+  persistentVolumeReclaimPolicy: Retain
+  csi:
+    driver: efs.csi.aws.com
+    volumeHandle: fs-0a8330c590e1ba326       # Replace with your File System ID
+---
+# PersistentVolumeClaim is claiming the PV that it needs storage.
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: efs-static
+spec:
+  storageClassName: ""        # Empty string must be explicitly set otherwise default StorageClass will be set
+  # volumeName: efs-static    # This is the Persistent Volume name.    
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    volumeMounts:
+    - name: html-data
+      mountPath: /usr/share/nginx/html
+  nodeSelector:
+    topology.kubernetes.io/zone: us-east-1b       # Replace with your specified az
+  volumes:
+  - name: html-data
+    persistentVolumeClaim:
+      claimName: efs-static
