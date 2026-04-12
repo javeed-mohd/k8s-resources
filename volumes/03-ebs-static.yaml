@@ -39,8 +39,8 @@ spec:
     volumeMounts:
     - name: html-data
       mountPath: /usr/share/nginx/html
-  # nodeSelector:
-  #   topology.kubernetes.io/zone: us-east-1b       # Replace with your specified az
+  nodeSelector:
+    topology.kubernetes.io/zone: us-east-1b       # Replace with your specified az
   volumes:
   - name: html-data
     persistentVolumeClaim:
