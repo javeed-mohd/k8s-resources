@@ -37,7 +37,7 @@ spec:
 ---
 # A service is a method for exposing a network application that is running on one or more Pods in your cluster.
 apiVersion: v1
-kind: Service
+kind: Service     # Used for Load Balancing
 metadata:
   name: nginx
 spec:
@@ -52,7 +52,7 @@ spec:
 ---
 # Headless Service --> A headless service is a service without a cluster IP.
 apiVersion: v1
-kind: Service
+kind: Service     # It is used to find other nodes IP address in cluster for data replication
 metadata:
   name: nginx-headless
 spec:
