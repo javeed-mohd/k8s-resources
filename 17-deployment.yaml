@@ -49,22 +49,22 @@ spec:
   - protocol: TCP
     port: 80          # Service Port
     targetPort: 80    # Container Port    
----
-# Headless Service --> A headless service is a service without a cluster IP.
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx-headless
-spec:
-  clusterIP: None
-  selector:
-    # Labels are used as selectors.
-    project: roboshop
-    component: frontend
-  ports:
-  - protocol: TCP
-    port: 80          # Service Port
-    targetPort: 80    # Container Port 
+# ---
+# # Headless Service --> A headless service is a service without a cluster IP.
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: nginx-headless
+# spec:
+#   clusterIP: None
+#   selector:
+#     # Labels are used as selectors.
+#     project: roboshop
+#     component: frontend
+#   ports:
+#   - protocol: TCP
+#     port: 80          # Service Port
+#     targetPort: 80    # Container Port 
 
 # This is for Deployment
 # # Create multiple replicas of your pod. Always runs desired number of pods. 
