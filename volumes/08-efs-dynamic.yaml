@@ -4,6 +4,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: efs-dynamic
 spec:
+  # ReadWiteMany access mode becaue it is Network File Sharing (NFS)
   accessModes:
     - ReadWriteMany
   storageClassName: roboshop-efs
